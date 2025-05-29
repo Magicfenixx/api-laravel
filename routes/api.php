@@ -24,6 +24,7 @@ Route::get('/me', [AuthController::class, 'me'])->middleware('auth:api');
 Route::post('/refresh', [AuthController::class, 'refresh']);
 Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLinkEmail']);
 Route::post('/reset-password', [PasswordResetController::class, 'reset']);
+Route::middleware('auth:api')->get('/users', [\App\Http\Controllers\UserController::class, 'index']);
 Route::post('/test', function () {
     return response()->json(['ok' => true]);
 });
